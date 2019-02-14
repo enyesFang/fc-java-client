@@ -2,3 +2,6 @@ apply plugin: 'java'
 apply plugin: 'idea'
 
 
+dependencies {
+    compile 'com.alibaba.csp:sentinel-core:1.4.1'
+}
