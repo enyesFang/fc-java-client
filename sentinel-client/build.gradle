@@ -1,7 +1,29 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
 
+buildscript {
+    ext {
+        springBootVersion = '2.0.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
 
 dependencies {
+
+//    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedCompile('javax.servlet:javax.servlet-api:4.0.1')
+
+    compile('org.springframework.boot:spring-boot-starter-web:2.0.6.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-tomcat:2.0.6.RELEASE')
+
     compile 'com.alibaba.csp:sentinel-core:1.4.1'
+    compile 'com.alibaba.csp:sentinel-transport-simple-http:1.4.1'
+    compile 'com.alibaba.csp:sentinel-web-servlet:1.4.1'
 }

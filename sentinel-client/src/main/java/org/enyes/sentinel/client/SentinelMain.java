@@ -9,12 +9,15 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class Main {
+public class SentinelMain {
+
+    private static final Random RD = new Random();
 
     public static void main(String[] args) {
         // 配置规则.
-        initFlowRules();
+//        initFlowRules();
 
         while (true) {
             Entry entry = null;
@@ -22,8 +25,11 @@ public class Main {
                 entry = SphU.entry("HelloWorld");
                 // 资源中的逻辑.
                 System.out.println("hello world");
+                Thread.sleep(Math.abs(RD.nextInt(5000)));
             } catch (BlockException e1) {
                 System.out.println("blocked!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             } finally {
                 if (entry != null) {
                     entry.exit();
